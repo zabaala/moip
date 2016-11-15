@@ -14,6 +14,17 @@ class MoipServiceProvider extends ServiceProvider
     public $defer = true;
 
     /**
+     * Perform post-registration booting of services.
+     *
+     * @return void
+     */
+    public function boot() {
+        $this->publishes([
+            __DIR__.'/config/moip.php' => config_path('moip.php'),
+        ]);
+    }
+
+    /**
      * Register the service provider.
      */
     public function register() {
