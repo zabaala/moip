@@ -1,0 +1,19 @@
+{
+    "name": "zabaala/moip",
+    "description": "Permita que sua aplicação Laravel se integre com o servico de pagamento recorrente do Moip (Moip Assinaturas)",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Mauricio Rodrigues",
+            "email": "mauricio.vsr@gmail.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Zabaala\\Moip\\": "src/"
+        }
+    },
+    "minimum-stability": "dev",
+    "require": {}
+}
