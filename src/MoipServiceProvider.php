@@ -19,9 +19,15 @@ class MoipServiceProvider extends ServiceProvider
      * @return void
      */
     public function boot() {
-        $this->publishes([
-            __DIR__.'/config/moip.php' => config_path('moip.php'),
-        ]);
+
+        $configPath = __DIR__.'/config/moip.php';
+
+        $this->publishes(
+            [$configPath => config_path('moip.php')],
+            'moip'
+        );
+
+        $this->mergeConfigFrom($configPath, 'moip');
     }
 
     /**
