@@ -43,7 +43,12 @@ Depois de incluir a dependência `zabaala/moip` no seu projeto, você vai precis
 
 ### Configurando o Pacote
 
-O pacote `zabaala/moip` possue um arquivo de configuração que precisa ser publicado para a pasta de configuração raiz do seu projeto Laravel. Para isto, execute o comando `php artisan vendor:publish --tag=moip`. Ao final do processo, você encontrará um arquivo chamado `moip.php` dentro da pasta `config/` do seu projeto.
+O pacote `zabaala/moip` possue um arquivo de configuração que precisa ser publicado para a pasta de configuração raiz do seu projeto Laravel. Para isto, execute o comando:
+```php
+php artisan vendor:publish --tag=moip
+```
+
+Ao final do processo, você encontrará um arquivo chamado `moip.php` dentro da pasta `config/` do seu projeto.
 
 Neste momento você vai precisar configurar o seu pacote. Antes de continuar com a configuração, é importante que você já tenha uma conta criada com o Moip. Caso você ainda não possua uma conta Moip tenha, acesse http://cadastro.moip.com.br e efetue seu cadastro. Após você efetuar seu cadastro e tiver a certeza de que sua conta está ativa, autentique-se no ambiente do Moip.
 
