@@ -30,6 +30,25 @@ return [
 
     /*
     |--------------------------------------------------------------------------
+    | Authorization Code
+    |--------------------------------------------------------------------------
+    |
+    | O Moip Assinaturas utiliza webhooks para notificar os eventos
+    | provenientes da sua conta em tempo real.
+    |
+    | Para garantir que as notificações têm como origem o Moip Assinatura,
+    | nós precisaremos verificar o authorization_code, que é um parâmetro que
+    | vem no HEADER das requisições do Moip. Essa é uma informação de alta
+    | importância, para garantir a segurança da sua aplicação.
+    |
+    */
+    'authorization' => [
+        'check' => env('MOIP_AUTHORIZATION_CHECK', true),
+        'code' => env('MOIP_AUTHORIZATION_CODE', true),
+    ],
+
+    /*
+    |--------------------------------------------------------------------------
     | Endpoint
     |--------------------------------------------------------------------------
     |
