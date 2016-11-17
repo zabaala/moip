@@ -99,7 +99,7 @@ class Plan extends MoipResource implements ResourceManager
      * @param null $maxQuantity
      */
     public function setMaxQuantity($maxQuantity = null) {
-        $this->max_qty = $maxQuantity;
+        $this->data->max_qty = $maxQuantity;
     }
 
     public function setTrial($days = 0, $enabled = false, $hold_setup_fee = true) {
