@@ -144,7 +144,7 @@ class Plan extends MoipResource implements ResourceManager
      * @return stdClass
      */
     public function inactivate() {
-        return $this->setStatus('inactivate');
+        return $this->toggleStatus('inactivate');
     }
 
     /**
@@ -153,7 +153,16 @@ class Plan extends MoipResource implements ResourceManager
      * @return stdClass
      */
     public function activate() {
-        return $this->setStatus('activate');
+        return $this->toggleStatus('activate');
+    }
+
+    /**
+     * Set Plan status.
+     *
+     * @param $status
+     */
+    public function setStatus($status) {
+        $this->data->status = $status;
     }
 
     /**
@@ -163,9 +172,11 @@ class Plan extends MoipResource implements ResourceManager
      * @param $action string Possible values: activate | inactivate.
      * @return stdClass
      */
-    protected function setStatus($action) {
+    protected function toggleStatus($action)
+    {
         return $this->updateResource(sprintf('/%s/%s/%s', self::PATH, $this->data->code, $action));
     }
+
 
     /**
      * Find a Plan.
