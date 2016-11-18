@@ -73,13 +73,15 @@ Defina os valores corretos para cada uma das variaveis de ambiente relacionadas 
 
 Com esse pacote você poderá:
 * **Planos (Plan):** (listar, consultar, criar, ativar, desativar);
+* **Cupons (Coupon):** (listar, consultar, criar, ativar, desativar);
 * **Assinantes (Subscriber):** (listar, consultar, criar, atualizar);
 * **Informações de Cobrança (BillingInfo):** (Atualizar dados de cobrança);
 * **Assinaturas (Subscription):** (Criar, listar, consultar detalhes, suspender, reativar, cancelar, alterar);
 * **Faturas (Invoice):** (Listar, consultar);
 * **Pagamentos (Payment):** (Listar, consultar);
 
-### Planos
+### Planos (Plans)
+
 Listando os planos existentes:
 
 ```php
@@ -154,7 +156,51 @@ try {
 }
 ```
 
-### Assinantes
+### Cupons (Coupons)
+
+Listando todos os cupons de desconto:
+
+```php
+$coupons = Moip::coupons()->all();
+```
+
+Criando um novo cupom de desconto:
+
+```php
+$coupons = Moip::coupons();
+$coupons->setCode('ABCD-1234');
+$coupons->setName('Coupon de teste de integração');
+$coupons->setDescription('Utilizado para testar a integração com o Moip');
+$coupons->setDiscount('20', 'percent');
+$coupons->setStatus('active');
+$coupons->setDuration('once'); // once|repeating|forever
+$coupons->setMaxRedemptions('100');
+$coupons->setExpirationDate('31', '12', '2016');
+
+try {
+    $coupons->create();
+} catch (\Exception $e) {
+    throw new \Exception($e);
+}
+```
+
+Ativando um plano:
+
+```php
+$coupons = Moip::coupons();
+$coupons->setCode('ABCD-1234');
+$coupons->activate();
+```
+
+Desativando um plano:
+
+```php
+$coupons = Moip::coupons();
+$coupons->setCode('ABCD-1234');
+$coupons->inactivate();
+```
+
+### Assinantes (Subscribers)
 
 Listando todos os assinantes:
 
@@ -224,7 +270,7 @@ try {
 }
 ```
 
-### Informações de cobrança
+### Informações de cobrança (BillingInfo)
 
 Atualizando o cartão de crédito de um determinado assinante:
 
@@ -245,7 +291,7 @@ try {
 }
 ```
 
-### Assinaturas (Subscription)
+### Assinaturas (Subscriptions)
 
 Listando todas as assinaturas:
 
