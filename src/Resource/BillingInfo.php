@@ -71,27 +71,4 @@ class BillingInfo extends MoipResource
 
         return $this;
     }
-
-    /**
-    * Mount the buyer structure of the Subscriber.
-    *
-    * @param \stdClass $response
-    *
-    * @return $this
-    */
-    protected function populate(stdClass $response)
-    {
-        $billingInfo = clone $this;
-        $billingInfo->data = new stdClass();
-
-        $billingInfo->data->holder_name = $this->getIfSet('holder_name', $response);
-        $billingInfo->data->number = $this->getIfSet('number', $response);
-        $billingInfo->data->expiration_month = $this->getIfSet('expiration_month', $response);
-        $billingInfo->data->expiration_year = $this->getIfSet('expiration_year', $response);
-
-        // FIXME: implementar boleto.
-
-        return $billingInfo;
-    }
-
 }

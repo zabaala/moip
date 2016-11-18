@@ -66,13 +66,4 @@ class Invoice extends MoipResource
         return $this->getByPath(sprintf('/%s/%s', self::PATH, $id));
     }
 
-    /**
-     * @param stdClass $response
-     * @return stdClass
-     */
-    public function populate(stdClass $response) {
-        $this->data = $response;
-        return $this->data;
-    }
-
 }

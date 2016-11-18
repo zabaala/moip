@@ -2,10 +2,9 @@
 
 namespace Zabaala\Moip\Resource;
 
-use Zabaala\Moip\Contracts\ResourceManager;
 use stdClass;
 
-class Subscriber extends MoipResource implements ResourceManager
+class Subscriber extends MoipResource
 {
     /**
      * @const string
@@ -198,50 +197,5 @@ class Subscriber extends MoipResource implements ResourceManager
         return $this;
     }
 
-    /**
-    * Mount the buyer structure of the Subscriber.
-    *
-    * @param \stdClass $response
-    *
-    * @return \Zabaala\Moip\Resource\Subscriber information.
-    */
-    public function populate(stdClass $response)
-    {
-        $subscriber = clone $this;
-        $subscriber->data = new stdClass();
-        $subscriber->data->code = $this->getIfSet('code', $response);
-        $subscriber->data->email = $this->getIfSet('email', $response);
-        $subscriber->data->fullname = $this->getIfSet('fullname', $response);
-        $subscriber->data->cpf = $this->getIfSet('cpf', $response);
-        $subscriber->data->phone_area_code = $this->getIfSet('phone_area_code', $response);
-        $subscriber->data->phone_number = $this->getIfSet('phone_number', $response);
-        $subscriber->data->birthdate_day = $this->getIfSet('birthdate_day', $response);
-        $subscriber->data->birthdate_month = $this->getIfSet('birthdate_month', $response);
-        $subscriber->data->birthdate_year = $this->getIfSet('birthdate_year', $response);
-
-        // Address
-        $address = $this->getIfSet('address', $response);
-        $subscriber->data->address = new stdClass();
-        $subscriber->data->address->street = $this->getIfSet('street', $address);
-        $subscriber->data->address->city = $this->getIfSet('city', $address);
-        $subscriber->data->address->state = $this->getIfSet('state', $address);
-        $subscriber->data->address->country = $this->getIfSet('country', $address);
-        $subscriber->data->address->zipcode = $this->getIfSet('zipcode', $address);
-
-        // Billing info
-        $billing_info = $this->getIfSet('billing_info', $response);
-        $credit_card = $this->getIfSet('credit_card', $billing_info);
-
-        $subscriber->data->billing_info = new stdClass();
-        $subscriber->data->billing_info->credit_card = new stdClass();
-        $subscriber->data->billing_info->credit_card->holder_name = $this->getIfSet('holder_name', $credit_card);
-        $subscriber->data->billing_info->credit_card->number = $this->getIfSet('number', $credit_card);
-        $subscriber->data->billing_info->credit_card->expiration_month = $this->getIfSet('expiration_month', $credit_card);
-        $subscriber->data->billing_info->credit_card->expiration_year = $this->getIfSet('expiration_year', $credit_card);
-
-        // FIXME: implementar boleto.
-
-        return $subscriber;
-    }
 
 }

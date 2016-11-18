@@ -2,12 +2,9 @@
 
 namespace Zabaala\Moip\Resource;
 
-
-use Illuminate\Support\Collection;
 use stdClass;
-use Zabaala\Moip\Contracts\ResourceManager;
 
-class Coupon extends MoipResource implements ResourceManager
+class Coupon extends MoipResource
 {
     /**
      * @const string

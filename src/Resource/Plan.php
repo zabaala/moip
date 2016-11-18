@@ -2,11 +2,9 @@
 
 namespace Zabaala\Moip\Resource;
 
-use Zabaala\Moip\Contracts\ResourceManager;
-use Zabaala\Moip\Http\HTTPRequest;
 use stdClass;
 
-class Plan extends MoipResource implements ResourceManager
+class Plan extends MoipResource
 {
     /**
      * @const string
@@ -200,44 +198,4 @@ class Plan extends MoipResource implements ResourceManager
         return parent::getAllByPath(sprintf('/%s/', self::PATH));
     }
 
-    /**
-    * Mount the plan structure.
-    *
-    * @param \stdClass $response
-    *
-    * @return Plan Plan information.
-    */
-    public function populate(stdClass $response) {
-
-        $plan = clone $this;
-        $plan->data = new stdClass();
-        $plan->data->code = $this->getIfSet('code', $response);
-        $plan->data->name = $this->getIfSet('name', $response);
-        $plan->data->description = $this->getIfSet('description', $response);
-        $plan->data->amount = $this->getIfSet('amount', $response);
-        $plan->data->setup_fee = $this->getIfSet('setup_fee', $response);
-        $plan->data->max_qty = $this->getIfSet('max_qty', $response);
-
-        // Interval
-        $interval = $this->getIfSet('interval', $response);
-
-        $plan->data->interval = new stdClass();
-        $plan->data->interval->length = $this->getIfSet('length', $interval);
-        $plan->data->interval->unit = $this->getIfSet('unit', $interval);
-
-        $plan->data->billing_cycles = $this->getIfSet('billing_cycles', $response);
-
-        // Trial
-        $trial = $this->getIfSet('interval', $response);
-
-        $plan->data->trial = new stdClass();
-        $plan->data->trial->days = $this->getIfSet('days', $trial);
-        $plan->data->trial->enabled = $this->getIfSet('enabled', $trial);
-        $plan->data->trial->hold_setup_fee = $this->getIfSet('hold_setup_fee', $trial);
-
-        $plan->data->payment_method = $this->getIfSet('payment_method', $response);
-        $plan->data->status = $this->getIfSet('status', $response);
-
-        return $plan;
-    }
 }
