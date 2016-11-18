@@ -4,6 +4,7 @@ namespace Zabaala\Moip;
 
 use Zabaala\Moip\Http\HTTPConnection;
 use Zabaala\Moip\Resource\BillingInfo;
+use Zabaala\Moip\Resource\Coupon;
 use Zabaala\Moip\Resource\Invoice;
 use Zabaala\Moip\Resource\Payment;
 use Zabaala\Moip\Resource\Plan;
@@ -130,6 +131,16 @@ class Moip
     public function payments()
     {
         return new Payment($this);
+    }
+
+    /**
+     * Create a new Coupon instance.
+     *
+     * @return Coupon
+     */
+    public function coupons()
+    {
+        return new Coupon($this);
     }
 
     /**
