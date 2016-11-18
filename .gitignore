@@ -5,4 +5,5 @@
 Homestead.json
 Homestead.yaml
 .env
+composer.lock
 **/.DS_Store
