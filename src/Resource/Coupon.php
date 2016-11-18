@@ -2,6 +2,8 @@
 
 namespace Zabaala\Moip\Resource;
 
+
+use Illuminate\Support\Collection;
 use stdClass;
 use Zabaala\Moip\Contracts\ResourceManager;
 
@@ -120,7 +122,7 @@ class Coupon extends MoipResource implements ResourceManager
      * @param $type
      * @param $occurrences
      */
-    public function setDuration($type, $occurrences)
+    public function setDuration($type, $occurrences = '')
     {
         $this->data->duration = new \stdClass();
         $this->data->duration->type = $type;
@@ -158,7 +160,7 @@ class Coupon extends MoipResource implements ResourceManager
      */
     public function activate()
     {
-        return $this->toggleStatus('activate');
+        return $this->toggleStatus('active');
     }
 
     /**
@@ -166,7 +168,7 @@ class Coupon extends MoipResource implements ResourceManager
      */
     public function inactivate()
     {
-        return $this->toggleStatus('inactivate');
+        return $this->toggleStatus('inactive');
     }
 
     /**
@@ -181,15 +183,4 @@ class Coupon extends MoipResource implements ResourceManager
         return $this->updateResource(sprintf('/%s/%s/%s', self::PATH, $this->data->code, $action));
     }
 
-    /**
-     * Mount information of a determined object.
-     *
-     * @param \stdClass $response
-     *
-     * @return mixed
-     */
-    public function populate(stdClass $response)
-    {
-        // TODO: Implement populate() method.
-    }
 }
