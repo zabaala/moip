@@ -2,14 +2,14 @@
 
 namespace Zabaala\Moip\Resource;
 
+use Illuminate\Support\Collection;
 use JsonSerializable;
 use Zabaala\Moip\Http\HTTPConnection;
 use Zabaala\Moip\Http\HTTPRequest;
 use Zabaala\Moip\Moip;
-use RuntimeException;
 use stdClass;
 
-abstract class MoipResource implements JsonSerializable
+class MoipResource implements JsonSerializable
 {
     /**
      * Version of API.
@@ -27,20 +27,6 @@ abstract class MoipResource implements JsonSerializable
      * @var \stdClass
      */
     protected $data;
-
-    /**
-     * Initialize a new instance.
-     */
-    abstract protected function initialize();
-
-    /**
-     * Mount information of a determined object.
-     *
-     * @param \stdClass $response
-     *
-     * @return mixed
-     */
-    abstract public function populate(stdClass $response);
 
     /**
      * Create a new instance.
@@ -134,6 +120,25 @@ abstract class MoipResource implements JsonSerializable
     }
 
     /**
+     * Transform resource in a Illuminate\Support\Collection.
+     *
+     * @param $array
+     * @return Collection
+     */
+    protected function collect($array)
+    {
+        foreach ($array as $key => $value) {
+            if (is_array($value)) {
+                $value = $this->collect($value);
+                $array[$key] = $value;
+            }
+        }
+
+        return Collection::make($array);
+
+    }
+
+    /**
      * Find by path.
      *
      * @param string $path
@@ -152,13 +157,13 @@ abstract class MoipResource implements JsonSerializable
             throw new \Exception($httpResponse->getStatusMessage(), $httpResponse->getStatusCode());
         }
 
-        $responseContent = json_decode($httpResponse->getContent());
+        $responseContent = json_decode($httpResponse->getContent(), false);
 
         if($all) {
             return $responseContent;
         }
 
-        return $this->populate($responseContent);
+        return $this->collect($responseContent);
     }
 
     /**
