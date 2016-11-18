@@ -26,7 +26,7 @@ class Plan extends MoipResource implements ResourceManager
      *
      * @param null $code
      */
-    public function setCode($code = null) {
+    public function setCode($code) {
 
         if ($code === null) {
             $this->data->code = uniqid();
@@ -49,7 +49,7 @@ class Plan extends MoipResource implements ResourceManager
      *
      * @param null $description
      */
-    public function setDescription($description = null) {
+    public function setDescription($description) {
         $this->data->description = $description;
     }
 
@@ -67,7 +67,7 @@ class Plan extends MoipResource implements ResourceManager
      *
      * @param $setup_fee
      */
-    public function setSetupFee($setup_fee = null) {
+    public function setSetupFee($setup_fee) {
         $this->data->setup_fee = $setup_fee;
     }
 
@@ -88,7 +88,7 @@ class Plan extends MoipResource implements ResourceManager
      *
      * @param $billingCycles
      */
-    public function setBillingCycles($billingCycles = null) {
+    public function setBillingCycles($billingCycles) {
         $this->data->billing_cycles = $billingCycles;
     }
 
@@ -98,7 +98,7 @@ class Plan extends MoipResource implements ResourceManager
      *
      * @param null $maxQuantity
      */
-    public function setMaxQuantity($maxQuantity = null) {
+    public function setMaxQuantity($maxQuantity) {
         $this->data->max_qty = $maxQuantity;
     }
 
