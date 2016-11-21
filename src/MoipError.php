@@ -119,8 +119,12 @@ class MoipError
                     $error = $this->errors[0];
                     break;
             }
+            
+            if(! @$error->description) {
+                return $error->code;
+            }
 
-            return ($withCode ? $error->code . ' - ' : '') . $error->description;
+            return ($withCode ? $error->code . ' - ' : '') . @$error->description;
         }
 
         return '';
