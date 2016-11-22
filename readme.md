@@ -79,6 +79,7 @@ Com esse pacote você poderá:
 * **Assinaturas (Subscription):** (Criar, listar, consultar detalhes, suspender, reativar, cancelar, alterar);
 * **Faturas (Invoice):** (Listar, consultar);
 * **Pagamentos (Payment):** (Listar, consultar);
+* **Números de Cartões de Crédito para testes**.
 
 ### Planos (Plans)
 
@@ -371,6 +372,18 @@ Consultando um pagamento:
 $payments = Moip::payments();
 $payments->get('PAYMENT-ID');
 ```
+
+### Cartões de Créditos para teste
+
+Abaixo seguem alguns números de cartões de crédito que podem ser utilizados para teste:
+
+American Express*: 376411112222331
+Mastercard: 5555666677778884
+Diners: 30111122223331
+Visa: 4073020000000002
+Hipercard: 3841009009123456089
+
+*O cartão American Express possui CVV de 4 dígitos, ao contrário de todas as bandeiras que possuem CVV com apenas 3.
 
 ### Licensa
 MIT License.
