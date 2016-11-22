@@ -33,7 +33,7 @@ class Subscriber extends MoipResource
      */
     public function create()
     {
-        return $this->postResource(sprintf('/%s', self::PATH));
+        return $this->createResource(sprintf('/%s', self::PATH));
     }
 
     /**
@@ -42,7 +42,7 @@ class Subscriber extends MoipResource
      * @return stdClass
      */
     public function update() {
-        return $this->putResource(sprintf('/%s/%s', self::PATH, $this->data->code));
+        return $this->updateResource(sprintf('/%s/%s', self::PATH, $this->data->code));
     }
 
     /**

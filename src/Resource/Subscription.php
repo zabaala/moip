@@ -135,7 +135,7 @@ class Subscription extends MoipResource
      * @return stdClass
      */
     public function create() {
-        return $this->postResource(sprintf('/%s?new_customer=false', self::PATH));
+        return $this->createResource(sprintf('/%s', self::PATH));
     }
 
     /**
@@ -144,7 +144,7 @@ class Subscription extends MoipResource
      * @return stdClass
      */
     public function update() {
-        return $this->putResource(sprintf('/%s/%s?new_customer=false', self::PATH, $this->data->code));
+        return $this->updateResource(sprintf('/%s/%s', self::PATH, $this->data->code));
     }
 
     /**
