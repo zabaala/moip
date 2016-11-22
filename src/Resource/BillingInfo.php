@@ -42,7 +42,7 @@ class BillingInfo extends MoipResource
      */
     public function update()
     {
-        return $this->putResource(sprintf('/%s', str_replace('{{subscriber_code}}', $this->subscriber_code, self::PATH)));
+        return $this->updateResource(sprintf('/%s', str_replace('{{subscriber_code}}', $this->subscriber_code, self::PATH)));
     }
 
 
