@@ -90,7 +90,7 @@ class Moip
     /**
      * Create new Billing Info instance.
      *
-     * @return Plan
+     * @return BillingInfo
      */
     public function billingInfos() {
         return new BillingInfo($this);
@@ -99,7 +99,7 @@ class Moip
     /**
      * Create new Subscriber instance.
      *
-     * @return Plan
+     * @return Subscriber
      */
     public function subscribers() {
         return new Subscriber($this);
@@ -126,7 +126,7 @@ class Moip
     /**
      * Create a new Payment instance.
      *
-     * @return \Zabaala\Moip\Resource\Payment
+     * @return Payment
      */
     public function payments()
     {
