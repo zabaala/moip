@@ -377,11 +377,13 @@ $payments->get('PAYMENT-ID');
 
 Abaixo seguem alguns números de cartões de crédito que podem ser utilizados para teste:
 
-American Express*: 376411112222331
-Mastercard: 5555666677778884
-Diners: 30111122223331
-Visa: 4073020000000002
-Hipercard: 3841009009123456089
+```
+    American Express*: 376411112222331
+    Mastercard: 5555666677778884
+    Diners: 30111122223331
+    Visa: 4073020000000002
+    Hipercard: 3841009009123456089
+```
 
 *O cartão American Express possui CVV de 4 dígitos, ao contrário de todas as bandeiras que possuem CVV com apenas 3.
 
