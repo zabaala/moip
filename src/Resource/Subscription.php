@@ -178,7 +178,7 @@ class Subscription extends MoipResource
      * @return stdClass
      */
     protected function setStatus($status) {
-        return $this->putResource(sprintf('/%s/%s/%s', self::PATH, $this->data->code, $status));
+        return $this->updateResource(sprintf('/%s/%s/%s', self::PATH, $this->data->code, $status));
     }
 
 }

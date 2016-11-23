@@ -203,7 +203,7 @@ class MoipResource implements JsonSerializable
         }
 
         return !is_null($httpResponse->getContent()) && !empty($httpResponse->getContent())
-            ? $this->collect(json_decode($httpResponse->getContent(), false))
+            ? json_decode($httpResponse->getContent(), false)
             : null;
     }
 
