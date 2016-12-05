@@ -71,6 +71,15 @@ class MoipResponse {
     }
 
     /**
+     * Make 401 response.
+     * 
+     * @return MoipError
+     */
+    protected function code401() {
+        return $this->code400();
+    }
+
+    /**
      * Make 404 response.
      *
      * @return MoipError
