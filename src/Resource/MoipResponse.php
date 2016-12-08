@@ -72,11 +72,15 @@ class MoipResponse {
 
     /**
      * Make 401 response.
-     * 
+     *
      * @return MoipError
      */
     protected function code401() {
-        return $this->code400();
+        $error = json_decode($this->httpResponse->getContent());
+        $this->error->push('401', $error->ERROR);
+
+        return $this->error;
+
     }
 
     /**
