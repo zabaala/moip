@@ -108,6 +108,17 @@ class Subscription extends MoipResource
     }
 
     /**
+     * Set code of coupon.
+     * 
+     * @param $code
+     */
+    public function setCouponCode($code) {
+        $coupon = new stdClass();
+        $coupon->code = $code;
+        $this->data->coupon = $coupon;
+    }
+
+    /**
      * Get all Subscriptions.
      *
      * @return stdClass
