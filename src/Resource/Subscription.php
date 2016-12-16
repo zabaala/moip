@@ -33,11 +33,19 @@ class Subscription extends MoipResource
     const STATUS_CANCELED = 'cancel';
 
     /**
+     * Standard country .
+     *
+     * @const string
+     */
+    const ADDRESS_COUNTRY = 'BRA';
+
+    /**
      * Initialize a new instance.
      */
     public function initialize()
     {
         $this->data = new stdClass();
+        $this->data->customer = new stdClass();
     }
 
     /**
@@ -77,18 +85,6 @@ class Subscription extends MoipResource
         $plan->code = $planCode;
 
         $this->data->plan = $plan;
-    }
-
-    /**
-     * Set Subscriber / Customer code.
-     *
-     * @param $code
-     */
-    public function setSubscriberCode($code) {
-        $customer = new stdClass();
-        $customer->code = $code;
-
-        $this->data->customer = $customer;
     }
 
     /**
@@ -150,6 +146,15 @@ class Subscription extends MoipResource
     }
 
     /**
+     * Sort Subscription creation.
+     *
+     * @return stdClass
+     */
+    public function createWithNewSubscriber() {
+        return $this->createResource(sprintf('/%s?new_customer=true', self::PATH));
+    }
+
+    /**
      * Update a Subscription.
      *
      * @return stdClass
@@ -190,6 +195,165 @@ class Subscription extends MoipResource
      */
     protected function setStatus($status) {
         return $this->updateResource(sprintf('/%s/%s/%s', self::PATH, $this->data->code, $status));
+    }
+
+    /**
+     * Set Code of the Subscriber.
+     *
+     * @param $code
+     *
+     * @return $this
+     */
+    public function setSubscriberCode($code)
+    {
+        $this->data->customer->code = $code;
+
+        return $this;
+    }
+
+    /**
+     * Set e-mail of the Subscriber.
+     *
+     * @param string $email Email Subscriber.
+     *
+     * @return $this
+     */
+    public function setSubscriberEmail($email)
+    {
+        $this->data->customer->email = $email;
+
+        return $this;
+    }
+
+    /**
+     * Set fullname of the Subscriber.
+     *
+     * @param string $fullname Customer's full name.
+     *
+     * @return $this
+     */
+    public function setSubscriberFullName($fullname)
+    {
+        $this->data->customer->fullname = $fullname;
+
+        return $this;
+    }
+
+    /**
+     * Set fullname of the Subscriber.
+     *
+     * @param $cpf
+     *
+     * @return $this
+     */
+    public function setSubscriberCpf($cpf)
+    {
+        $this->data->customer->cpf = $cpf;
+
+        return $this;
+    }
+
+    /**
+     * Set phone of the Subscriber.
+     *
+     * @param int $areaCode DDD telephone.
+     * @param int $number Telephone number.
+     *
+     * @return $this
+     */
+    public function setSubscriberPhone($areaCode, $number)
+    {
+        $this->data->customer->phone_area_code = $areaCode;
+        $this->data->customer->phone_number = $number;
+
+        return $this;
+    }
+
+    /**
+     * Set birth date of the Subscriber.
+     *
+     * @param $day
+     * @param $month
+     * @param $year
+     *
+     * @return $this
+     */
+    public function setSubscriberBirthDate($day, $month, $year)
+    {
+        $this->data->customer->birthdate_day = $day;
+        $this->data->customer->birthdate_month = $month;
+        $this->data->customer->birthdate_year = $year;
+
+        return $this;
+    }
+
+    /**
+     * Add a new address to the Subscriber.
+     *
+     * @param string $street
+     * @param string $number
+     * @param string $district
+     * @param string $city
+     * @param string $state
+     * @param string $zip
+     * @param string $complement
+     * @param string $country
+     *
+     * @return $this
+     */
+    public function setSubscriberAddress(
+        $street,
+        $number,
+        $complement = null,
+        $district,
+        $city,
+        $state,
+        $zip,
+        $country = self::ADDRESS_COUNTRY
+    )
+    {
+        $address = new stdClass();
+        $address->street = $street;
+        $address->number = $number;
+        $address->complement = $complement;
+        $address->district = $district;
+        $address->city = $city;
+        $address->state = $state;
+        $address->country = $country;
+        $address->zipcode = $zip;
+
+        $this->data->customer->address = $address;
+
+        return $this;
+    }
+
+    /**
+     * Set credit card of the Subscriber.
+     *
+     * @param int $number Card number.
+     * @param int $expirationMonth Card expiration month.
+     * @param int $expirationYear Year card expiration.
+     * @param $holder_name
+     *
+     * @return $this
+     */
+    public function setSubscriberCreditCard(
+        $number,
+        $expirationMonth,
+        $expirationYear,
+        $holder_name
+    )
+    {
+        $credit_card = new stdClass();
+        $credit_card->number = $number;
+        $credit_card->holder_name = $holder_name;
+        $credit_card->expiration_month = $expirationMonth;
+        $credit_card->expiration_year = $expirationYear;
+
+        $this->data->customer->billing_info = new stdClass();
+        $this->data->customer->billing_info->credit_card = $credit_card;
+
+        return $this;
     }
 
 }
