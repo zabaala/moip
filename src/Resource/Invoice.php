@@ -74,7 +74,7 @@ class Invoice extends MoipResource
      */
     public function retry($id)
     {
-        dd($this->createResource(sprintf('/%s/%s/retry', self::PATH, $id)));
+        return $this->createResource(sprintf('/%s/%s/retry', self::PATH, $id));
     }
 
 }
