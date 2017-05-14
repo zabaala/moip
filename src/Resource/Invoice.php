@@ -66,4 +66,15 @@ class Invoice extends MoipResource
         return $this->getByPath(sprintf('/%s/%s', self::PATH, $id));
     }
 
+    /**
+     * Retry a payment.
+     * 
+     * @param $id
+     * @return stdClass
+     */
+    public function retry($id)
+    {
+        dd($this->createResource(sprintf('/%s/%s/retry', self::PATH, $id)));
+    }
+
 }
