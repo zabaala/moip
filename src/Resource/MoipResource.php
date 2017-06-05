@@ -199,7 +199,13 @@ class MoipResource implements JsonSerializable
 
         if ($httpResponse->getStatusCode() != 200 && $httpResponse->getStatusCode() != 201) {
             $error = $response->byCode($httpResponse->getStatusCode());
-            throw new \Exception($error->last(), $httpResponse->getStatusCode());
+
+            if (!empty($error->all())) {
+                throw new \Exception($error->last(), $httpResponse->getStatusCode());
+            }
+
+            throw new \Exception('[Moip] ' . $httpResponse->getStatusMessage(), $httpResponse->getStatusCode());
+
         }
 
         return !is_null($httpResponse->getContent()) && !empty($httpResponse->getContent())
