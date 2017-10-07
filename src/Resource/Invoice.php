@@ -77,4 +77,24 @@ class Invoice extends MoipResource
         return $this->createResource(sprintf('/%s/%s/retry', self::PATH, $id));
     }
 
+    /**
+     * Update boleto due date.
+     *
+     * @param $invoice_id
+     * @param $day
+     * @param $month
+     * @param $year
+     */
+    public function updateDueDateBoleto($invoice_id, $day, $month, $year)
+    {
+        $obj = new stdClass();
+        $obj->day = $day;
+        $obj->month = $month;
+        $obj->year = $year;
+
+        $this->data = $obj;
+
+        return $this->createResource(sprintf('/%s/%s/boletos', self::PATH, $invoice_id));
+    }
+
 }
