@@ -43,7 +43,9 @@ class MoipError
      *
      * @param $errors
      */
-    public function pushMultiple($errors) {
+    public function pushMultiple($errors)
+    {
+        \Log::info($errors);
 
         $errors = json_decode($errors);
         $errors = $errors->errors;
