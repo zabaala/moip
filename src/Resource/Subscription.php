@@ -121,7 +121,7 @@ class Subscription extends MoipResource
      */
     public function all()
     {
-        return $this->getByPath(sprintf('/%s/', self::PATH), true);
+        return $this->getByPath(sprintf('/%s/?limit=20000', self::PATH), true);
     }
 
     /**

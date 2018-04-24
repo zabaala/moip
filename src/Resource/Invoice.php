@@ -51,7 +51,7 @@ class Invoice extends MoipResource
      */
     public function all()
     {
-        return $this->getByPath(sprintf('/%s', str_replace('{{subscription_code}}', $this->subscription_code, self::PATH_ALL)), true);
+        return $this->getByPath(sprintf('/%s/?limit=20000', str_replace('{{subscription_code}}', $this->subscription_code, self::PATH_ALL)), true);
     }
 
     /**
